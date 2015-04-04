@@ -1,0 +1,173 @@
+
+<div ng-include src="'./core/view/header.html'"></div>
+<div growl></div>  
+<div class="container">
+
+    <section class="section-padding">
+
+        <div data-ng-if="level[0]['nama'] === undefined">
+
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h2 class="panel-title" style="text-align: center;">Kartu Rencana Studi Online <br/>
+                        Silahkan Login dahulu</h2>
+                </div>
+                <div class="panel-body">
+                    <h3 style="color: red; text-align: center;">
+                        Maaf ...!! <br>
+                        Anda Harus login Terlebih dahulu
+                    </h3>
+
+                </div>
+            </div>
+
+        </div>
+        <div data-ng-if="level[0]['nama'] != undefined">
+            <div class="panel panel-primary" >
+                
+                <div class="panel-heading">
+                    <h3 class="panel-title" style="text-align: center;">Kartu Rencana Studi Online <br/>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="info" style=" box-shadow: 0px 5px 10px #99ccff; ">
+
+                        <table class="table table-hover">
+
+                            <thead>
+                                <tr>
+
+                                    <th><h5>Kode</h5></th>
+                            <th><h5>Dosen</h5></th>
+                            <th><h5>Mata Kuliah</h5></th>
+                            <th><h5>Semester</h5></th>
+                            <th><h5>Kelas</h5></th>
+                            <th><h5>Prodi</h5></th>
+                            <th><h5>Waktu</h5></th>
+                            <th><h5>R.</h5></th>
+                            <th><h5>Tahun</h5></th>
+
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="d in data">
+                                    <td><h6> {{d.kd_jadwal}}</h6></td>
+                                    <td><h6> {{d.nama}} </h6></td>
+                                    <td><h6> {{d.nm_matkul}} </h6></td>
+                                    <td><h6> {{d.matkul_smtr}} </h6></td>
+                                    <td><h6> {{d.kelas}} </h6></td>
+                                    <td><h6> {{d.matkul_prodi}} </h6></td>
+                                    <td><h6> {{d.hari}}({{d.mulai}}-{{d.selesai}})</h6></td>
+
+
+
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+
+                    </div>
+                    <div class="panel-footer" style=" box-shadow: 1px 5px 10px #99ccff; ">
+
+                        <form class="form">
+
+                            <div class="control-group">
+                                <label class="control-label"style="color: #040404">Semester</label>
+                                <div class="controls">
+                                    <div class="span12" >
+                                        <select class="form-control" name="semester" ng-model="mhs.semester" required style="width:30%;">
+                                            <option value=""selected> --pilih--</option>
+                                            <option value="1"> Semester I</option>
+                                            <option value="2"> Semester 2</option>
+                                            <option value="3"> Semester 3</option>
+                                            <option value="4"> Semester 4</option>
+                                            <option value="5"> Semester 5</option>
+                                            <option value="6"> Semester 6</option>
+                                            <option value="7"> Semester 7</option>
+                                            <option value="8"> Semester 8</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </form>
+                        <br>
+                        <div>
+                            <a type="submit" data-ng-click="modalJadwal()" class="btn btn-primary">Tampikan Mata Kuliah</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+<div class="modal {{modaloption}} " data-ng-init="modaloption = 'hide'">
+
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div growl></div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-ng-click="closeModal()" aria-hidden="true"><i class="glyphicon glyphicon-remove" style="color: red;"></i></button>
+                <h4 style=" text-align: center;">Kartu Rencana Studi <br>
+                    {{level[0]['prodi']}} - {{level[0]['kls_mhs']}}</h4>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-condensed">
+
+                    <thead>
+                        <tr>
+
+                            <th><h5>Kode</h5></th>
+                    <th><h5>Dosen</h5></th>
+                    <th><h5>Mata Kuliah</h5></th>
+                    <th><h5>Semester</h5></th>
+                    <th><h5>Kelas</h5></th>
+                    <th><h5>Prodi</h5></th>
+                    <th><h5>Waktu</h5></th>
+                    <th><h5>R.</h5></th>
+                    <th><h5>Tahun</h5></th>
+
+
+                    <th><h5>Action</h5></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="v in krs">
+                            <td><h6> {{v.kd_jadwal}}</h6></td>
+                            <td><h6> {{v.nama}} </h6></td>
+                            <td><h6> {{v.nm_matkul}} </h6></td>
+                            <td><h6> {{v.matkul_smtr}} </h6></td>
+                            <td><h6> {{v.kelas}} </h6></td>
+                            <td><h6> {{v.matkul_prodi}} </h6></td>
+                            <td><h6> {{v.hari}}({{v.mulai}}-{{v.selesai}})</h6></td>
+
+                            <td><h6> {{v.ruang}} </h6></td>
+                            <td><h6> {{v.thn_akademik}} </h6></td>
+
+                            <td>
+                                <div>
+                                    <button  ng-click="daftar(v.id_jadwal)" class=" btn-success btn-xs" type="button" title="Ket : Jadwal aktif atau selesai" style="padding-bottom: 1px; padding-top: 1px;"><h6>daftar</h6></button>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>  
+</div>
+</div>
